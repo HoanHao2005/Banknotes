@@ -109,11 +109,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = keras.Sequential([
     layers.Input(shape=(X_train.shape[1],)),
     layers.Dense(512, activation="relu"),
-    layers.Dropout(0.4),
     layers.Dense(256, activation="relu"),
-    layers.Dropout(0.4),
     layers.Dense(128, activation="relu"),
-    layers.Dropout(0.3),
     layers.Dense(len(class_names), activation="softmax")
 ])
 model.compile(optimizer=keras.optimizers.Adam(LR),
@@ -137,3 +134,4 @@ with open(LABELS_PATH, "w", encoding="utf-8") as f:
     json.dump({"class_names": class_names}, f, ensure_ascii=False, indent=2)
 print("[Info] Saved model ->", MODEL_PATH)
 print("[Info] Saved labels ->", LABELS_PATH)
+
